@@ -43,7 +43,7 @@ const Projects = observer(() => {
                 <Styled.ContentWithIcon>
                   <FontAwesomeIcon
                     icon={faLightbulb}
-                    color={theme.colors.lake}
+                    color={theme.colors.background}
                   />
                   <Styled.ContentSpan>{p?.introduction}</Styled.ContentSpan>
                 </Styled.ContentWithIcon>
@@ -56,7 +56,7 @@ const Projects = observer(() => {
                             <Styled.ContentWithIcon key={o}>
                               <FontAwesomeIcon
                                 icon={faCheck}
-                                color={theme.colors.lake}
+                                color={theme.colors.background}
                               />
                               <Styled.ContentSpan>{o}</Styled.ContentSpan>
                             </Styled.ContentWithIcon>

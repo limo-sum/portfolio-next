@@ -12,9 +12,6 @@ export const FlexFrame = styled.div`
   align-items: center;
   @media screen and (max-width: 768px) {
     display: block;
-    p:last-child {
-      margin-top: 20px;
-    }
   }
 `;
 export const ElementFrame = styled.div`
@@ -47,10 +44,31 @@ export const Tags = styled.p`
 
   li {
     list-style: none;
-    color: ${() => theme.colors.lake};
-    border: 1px solid ${() => theme.colors.lake};
+    color: ${() => theme.colors.background};
+    border: 1px solid ${() => theme.colors.background};
     padding: 0px 8px;
     font-size: 14px;
   }
 `;
 export const SkeletonFrame = styled.section``;
+
+export const FrameComp = styled.div`
+  padding: 30px;
+
+  @media screen and (max-width: 768px) {
+    width: 100vw;
+  }
+`;
+export const FrameH1 = styled.h1`
+  display: block;
+  margin-bottom: 30px;
+  width: max-content;
+  font-size: 48px;
+  font-weight: bolder;
+  line-height: 48px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 36px;
+    line-height: 36px;
+  }
+`;

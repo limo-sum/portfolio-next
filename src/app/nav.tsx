@@ -13,6 +13,8 @@ import { observer } from "mobx-react";
 import useStore from "../store/index";
 import Popup from "./components/common/popup";
 import isPropValid from "@emotion/is-prop-valid";
+import j from "./images/j-white.png";
+import Image from "next/image";
 
 const NavBar = observer(() => {
   const { globalStore } = useStore();
@@ -26,59 +28,75 @@ const NavBar = observer(() => {
   };
   const prop = { opened: openMenu };
   return (
-    <Nav>
-      <NavLogo>
-        <Link href={"/"}>LEE JIYUN</Link>
-      </NavLogo>
-      <NavMenu {...prop}>
-        {menus.map((menu: Menu) => {
-          const menuProp = { ...prop, current: currentMenu === menu.title };
-          return (
-            <NavTitle
-              key={menu.title}
-              {...menuProp}
-              onClick={() => setCurrentMenu(menu.title)}
-            >
-              <Menu targetId={menu.title}>
-                <span>{menu.title}</span>
-              </Menu>
-            </NavTitle>
-          );
-        })}
-      </NavMenu>
-      <NavIcons {...prop}>
-        <li
-          onClick={() => {
-            navigator.clipboard
-              .writeText("limosum@naver.com")
-              .then(() => handleCopy());
-          }}
-        >
-          <FontAwesomeIcon icon={copied ? faCheck : (faEnvelope as IconProp)} />
-        </li>
-        <li>
-          <FontAwesomeIcon icon={faGithubAlt as IconProp} />
-        </li>
-      </NavIcons>
-      <NavToggle onClick={() => setOpenMenu(!openMenu)}>
-        <FontAwesomeIcon icon={faBars as IconProp} />
-      </NavToggle>
-      <Popup msgType="success" message="복사되었습니다" visible={copied} />
-    </Nav>
+    <NavFrame>
+      <Nav>
+        <NavLogo>
+          <Link href={"/"}>
+            <Image src={j} alt="j" width={30} height={30} priority={true} />
+          </Link>
+        </NavLogo>
+        <NavMenu {...prop}>
+          {menus.map((menu: Menu) => {
+            const menuProp = { ...prop, current: currentMenu === menu.title };
+            return (
+              <NavTitle
+                key={menu.title}
+                {...menuProp}
+                onClick={() => setCurrentMenu(menu.title)}
+              >
+                <Menu targetId={menu.title}>
+                  <span>{menu.title}</span>
+                </Menu>
+              </NavTitle>
+            );
+          })}
+        </NavMenu>
+        <NavIcons {...prop}>
+          <li
+            onClick={() => {
+              navigator.clipboard
+                .writeText("limosum@naver.com")
+                .then(() => handleCopy());
+            }}
+          >
+            <FontAwesomeIcon
+              icon={copied ? faCheck : (faEnvelope as IconProp)}
+            />
+          </li>
+          <li
+            onClick={() => {
+              window.open("https://github.com/limo-sum");
+            }}
+          >
+            <FontAwesomeIcon icon={faGithubAlt as IconProp} />
+          </li>
+        </NavIcons>
+        <NavToggle onClick={() => setOpenMenu(!openMenu)}>
+          <FontAwesomeIcon icon={faBars as IconProp} />
+        </NavToggle>
+        <Popup msgType="success" message="복사되었습니다" visible={copied} />
+      </Nav>
+    </NavFrame>
   );
 });
 export default NavBar;
 
-const Nav = styled.nav`
+const NavFrame = styled.div`
   position: fixed;
+  left: 0;
   top: 0;
-  display: flex;
-  padding: 0 24px;
   width: 100vw;
-  justify-content: space-between;
-  align-items: center;
   background-color: ${() => theme.colors.background};
   z-index: 10;
+`;
+
+const Nav = styled.nav`
+  margin: 0 auto;
+  padding: 0 30px;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   @media screen and (max-width: 768px) {
     padding: 8px 24px;
@@ -90,9 +108,8 @@ const Nav = styled.nav`
 const NavLogo = styled.div`
   font-size: 24px;
   a {
-    margin-left: 10px;
     font-weight: bolder;
-    color: ${() => theme.colors.lake};
+    color: ${() => theme.colors.gray9};
   }
 `;
 
@@ -116,18 +133,18 @@ const NavTitle = styled.li.withConfig({
   padding: 8px 12px;
   span {
     background-color: ${(prop: any) =>
-      prop?.current ? theme.colors.background : theme.colors.lake};
+      prop?.current ? theme.colors.background : theme.colors.white};
     color: ${(prop: any) =>
-      prop?.current ? theme.colors.lake : theme.colors.background};
+      prop?.current ? theme.colors.white : theme.colors.background};
     border: 1px solid
       ${(prop: any) =>
-        prop?.current ? theme.colors.lake : theme.colors.background};
+        prop?.current ? theme.colors.white : theme.colors.background};
     padding: 3px 6px;
   }
   span:hover {
     background-color: ${() => theme.colors.background};
-    color: ${() => theme.colors.lake};
-    border: 1px solid ${() => theme.colors.lake};
+    color: ${() => theme.colors.white};
+    border: 1px solid ${() => theme.colors.white};
   }
 
   @media screen and (max-width: 768px) {
@@ -150,7 +167,7 @@ const NavIcons = styled.div.withConfig({
     padding: 8px 12px;
     width: 52px;
     list-style: none;
-    color: ${() => theme.colors.lake};
+    color: ${() => theme.colors.white};
     cursor: pointer;
   }
   @media screen and (max-width: 768px) {
@@ -165,10 +182,11 @@ const NavToggle = styled.a`
   position: absolute;
   right: 30px;
   font-size: 24px;
-  color: ${() => theme.colors.lake};
+  color: ${() => theme.colors.white};
   cursor: pointer;
 
   @media screen and (max-width: 768px) {
+    top: 5px;
     display: block;
   }
 `;

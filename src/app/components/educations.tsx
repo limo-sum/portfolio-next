@@ -37,7 +37,7 @@ const Educations = observer(() => {
                 <Styled.ContentWithIcon>
                   <FontAwesomeIcon
                     icon={faCircleUser}
-                    color={theme.colors.lake}
+                    color={theme.colors.background}
                   />
                   <Styled.ContentSpan>{p.title}</Styled.ContentSpan>
                 </Styled.ContentWithIcon>
@@ -46,7 +46,7 @@ const Educations = observer(() => {
                     <Styled.ContentWithIcon key={s}>
                       <FontAwesomeIcon
                         icon={faCheck}
-                        color={theme.colors.lake}
+                        color={theme.colors.background}
                       />
                       <Styled.ContentSpan>{s}</Styled.ContentSpan>
                     </Styled.ContentWithIcon>

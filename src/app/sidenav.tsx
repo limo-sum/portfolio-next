@@ -75,5 +75,5 @@ const SideTitle = styled.li``;
 const SideTitleH1 = styled.h1.withConfig({
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
-  color: ${(prop: any) => (prop?.current ? theme.colors.lake : "#000000")};
+  color: ${(prop: any) => (prop?.current ? theme.colors.gray9 : "#000000")};
 `;

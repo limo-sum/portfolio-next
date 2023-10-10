@@ -29,7 +29,7 @@ const Popup: FC<Props> = ({ msgType, message, visible }) => {
         <Styled.ContentWithIcon>
           <FontAwesomeIcon
             icon={icon as IconDefinition}
-            color={theme.colors.lake}
+            color={theme.colors.background}
           />
           <Styled.ContentSpan>{message}</Styled.ContentSpan>
         </Styled.ContentWithIcon>
