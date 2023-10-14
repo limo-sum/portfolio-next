@@ -33,8 +33,10 @@ const Intro = observer(() => {
   };
 
   return (
-    <Styled.FrameComp title={"INTRO"} id={"INTRO"}>
-      <Styled.FlexFrame style={{ justifyContent: "space-between" }}>
+    <Styled.FrameComp title={"INTRO"} id={"INTRO"} style={{ height: 315 }}>
+      <Styled.FlexFrame
+        style={{ justifyContent: "space-between", alignItems: "start" }}
+      >
         <div>
           <Styled.FrameH1>
             LEE JIYUN

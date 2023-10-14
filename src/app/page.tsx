@@ -8,8 +8,14 @@ import Educations from "./components/educations";
 import NavBar from "./nav";
 import { observer } from "mobx-react";
 import ScrollTopButton from "./components/common/scrollTop";
+import { useEffect } from "react";
 
 const Home = observer(() => {
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0);
+    };
+  }, []);
   return (
     <Main>
       <NavBar />

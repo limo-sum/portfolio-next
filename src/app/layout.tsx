@@ -10,6 +10,7 @@ import StyledComponentsRegistry from "@/lib/registry";
 export const metadata: Metadata = {
   title: "이지윤 포트폴리오",
   description: "프론트엔드 개발자 포트폴리오",
+  icons: { icon: "/j-black.png" },
 };
 const u = Ubuntu({
   weight: "400",
@@ -24,9 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" type="image/png" href="/j-black.png" />
-      </head>
+      <head></head>
       <body className={u.className}>
         <StyledComponentsRegistry>
           <Providers>{children}</Providers>
