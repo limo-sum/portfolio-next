@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/png" href="/apple-icon.png" />
+        <link rel="icon" type="image/png" href="/j-black.png" />
       </head>
       <body className={u.className}>
         <StyledComponentsRegistry>
