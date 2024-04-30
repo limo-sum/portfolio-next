@@ -1,65 +1,52 @@
-import { getEducations } from "@/fetch";
-import Frame from "./common/frame";
-import { ReactElement, useEffect, useState } from "react";
-import * as Styled from "./common/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import theme from "@/styles/theme";
 import { observer } from "mobx-react";
+import { H1 } from "./common/micro";
 import useStore from "@/store";
-import SkeletonContents from "./common/skeleton";
 
 const Educations = observer(() => {
-  const { loading } = useStore().globalStore;
-  const [educations, setEducations] = useState<any[]>([]);
-  useEffect(() => {
-    onload();
-  }, []);
-  const onload = async () => {
-    const i = await getEducations();
-    setEducations(i);
-  };
+  const { educations } = useStore().globalStore;
 
-  const props: { title: string; content: ReactElement } = {
-    title: "EDUCATIONS",
-    content: (
-      <Styled.ContentFrame>
-        {loading ? (
-          <SkeletonContents />
-        ) : (
-          educations?.map((p: any) => {
-            return (
-              <Styled.ElementFrame key={p.at}>
-                <Styled.Period>
-                  {p?.start_from} ~ {p?.end_to}
-                </Styled.Period>
-                <Styled.TitleH1>{p?.at}</Styled.TitleH1>
-                <Styled.ContentWithIcon>
-                  <FontAwesomeIcon
-                    icon={faCircleUser}
-                    color={theme.colors.background}
-                  />
-                  <Styled.ContentSpan>{p.title}</Styled.ContentSpan>
-                </Styled.ContentWithIcon>
-                {p?.skills?.map((s: string) => {
-                  return (
-                    <Styled.ContentWithIcon key={s}>
-                      <FontAwesomeIcon
-                        icon={faCheck}
-                        color={theme.colors.background}
-                      />
-                      <Styled.ContentSpan>{s}</Styled.ContentSpan>
-                    </Styled.ContentWithIcon>
-                  );
-                })}
-              </Styled.ElementFrame>
-            );
-          })
-        )}
-      </Styled.ContentFrame>
-    ) as ReactElement,
-  };
-  return <Frame {...props} />;
+  return (
+    <div>
+      <H1 text="EDUCATIONS" />
+      {educations?.map((p: any) => {
+        return (
+          <div
+            className="relative mb-12 grid grid-cols-4 gap-4 pb-1"
+            key={p.at}
+          >
+            <div className="absolute -inset-x-4 -inset-y-4 z-0 cursor-default border border-transparent rounded hover:border-gray-300" />
+            <p className="col-span-1">
+              {p?.start_from} ~ {p?.end_to}
+            </p>
+            <div className="col-span-3">
+              <h1 className="font-bold">{p?.at}</h1>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleUser}
+                  color={theme.colors.background}
+                />
+                <span>{p.title}</span>
+              </p>
+              {p?.skills?.map((s: string) => {
+                return (
+                  <p key={s}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      color={theme.colors.background}
+                    />
+                    <span>{s}</span>
+                  </p>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 });
 
 export default Educations;

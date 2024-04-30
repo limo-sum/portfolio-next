@@ -10,6 +10,11 @@ export const globalStore = observable({
   currentMenu: "INTRO",
   loading: true,
 
+  intro: {},
+  works: [],
+  projects: [],
+  educations: [],
+
   setMenus: action(async (m: never[]) => {
     globalStore.menus = m;
   }),
@@ -18,5 +23,17 @@ export const globalStore = observable({
   }),
   setLoading: action(async (m: boolean) => {
     globalStore.loading = m;
+  }),
+  setIntro: action(async (m: any) => {
+    globalStore.intro = m;
+  }),
+  setWorks: action(async (m: never[]) => {
+    globalStore.works = m;
+  }),
+  setProjects: action(async (m: never[]) => {
+    globalStore.projects = m;
+  }),
+  setEducations: action(async (m: never[]) => {
+    globalStore.educations = m;
   }),
 });

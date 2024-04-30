@@ -1,67 +1,48 @@
-import { getWorks } from "@/fetch";
-import Frame from "./common/frame";
-import { ReactElement, useEffect, useState } from "react";
-import * as Styled from "./common/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import theme from "@/styles/theme";
 import { periodGenerator } from "./common/generator";
 import { observer } from "mobx-react";
+import { H1 } from "./common/micro";
 import useStore from "@/store";
-import SkeletonContents from "./common/skeleton";
 
 const Works = observer(() => {
-  const { loading } = useStore().globalStore;
-  const [works, setWorks] = useState<any[]>([]);
-  useEffect(() => {
-    onload();
-  }, []);
-  const onload = async () => {
-    const i = await getWorks();
-    setWorks(i);
-  };
+  const { works } = useStore().globalStore;
 
-  const props: { title: string; content: ReactElement } = {
-    title: "WORKS",
-    content: (
-      <Styled.ContentFrame>
-        {loading ? (
-          <SkeletonContents />
-        ) : (
-          works?.map((p: any) => {
-            return (
-              <Styled.ElementFrame key={p.at}>
-                <Styled.Period>
-                  {periodGenerator(p?.start_from, p?.end_to)}
-                </Styled.Period>
-
-                <Styled.TitleH1>{p?.at}</Styled.TitleH1>
-                <Styled.ContentWithIcon>
-                  <FontAwesomeIcon
-                    icon={faCircleUser}
-                    color={theme.colors.background}
-                  />
-                  <Styled.ContentSpan>{p?.position}</Styled.ContentSpan>
-                </Styled.ContentWithIcon>
-                {p?.descriptions?.map((d: string) => {
-                  return (
-                    <Styled.ContentWithIcon key={d}>
-                      <FontAwesomeIcon
-                        icon={faCheck}
-                        color={theme.colors.background}
-                      />
-                      <Styled.ContentSpan>{d}</Styled.ContentSpan>
-                    </Styled.ContentWithIcon>
-                  );
-                })}
-              </Styled.ElementFrame>
-            );
-          })
-        )}
-      </Styled.ContentFrame>
-    ) as ReactElement,
-  };
-  return <Frame {...props} />;
+  return (
+    <div>
+      <H1 text="WORKS" />
+      {works?.map((p: any) => {
+        return (
+          <div
+            className="relative mb-12 grid grid-cols-4 gap-4 pb-1"
+            key={p.at}
+          >
+            <div className="absolute -inset-x-4 -inset-y-4 z-0 cursor-default border border-transparent rounded hover:border-gray-300" />
+            <p className="col-span-1">
+              {periodGenerator(p?.start_from, p?.end_to)}
+            </p>
+            <div className="col-span-3">
+              <div className="flex text-center">
+                <h1 className="font-bold">{p?.at}</h1> : {p?.position}
+              </div>
+              {p?.descriptions?.map((d: string) => {
+                return (
+                  <p key={d}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      color={theme.colors.background}
+                    />
+                    <span>{d}</span>
+                  </p>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 });
 
 export default Works;
