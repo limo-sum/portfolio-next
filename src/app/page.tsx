@@ -35,7 +35,7 @@ const Home = observer(() => {
   };
 
   return (
-    <div className="box-border mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 lg:px-24 lg:py-0">
+    <div className="box-border mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 lg:px-24 lg:py-0 font-['NanumSquareNeo-Variable']">
       {loading && (
         <div className="fixed top-0 left-0 z-10 bg-white h-full w-full">
           <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">

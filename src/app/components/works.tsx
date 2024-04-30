@@ -23,8 +23,12 @@ const Works = observer(() => {
               {periodGenerator(p?.start_from, p?.end_to)}
             </p>
             <div className="col-span-3">
-              <div className="flex text-center">
-                <h1 className="font-bold">{p?.at}</h1> : {p?.position}
+              <div className="flex items-end">
+                <h1 className="font-bold text-xl">{p?.at}</h1>
+                <span className="ml-1 text-sm text-gray-500">
+                  {" "}
+                  {p?.position}
+                </span>
               </div>
               {p?.descriptions?.map((d: string) => {
                 return (

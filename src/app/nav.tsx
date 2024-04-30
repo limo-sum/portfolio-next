@@ -57,7 +57,7 @@ const NavBar = observer(() => {
                 onClick={() => handleClick(menu.title)}
               >
                 <span
-                  className={`absolute -left-0 bottom-0 
+                  className={`absolute -left-0 bottom-0 text-xl
                   ${currentMenu === menu.title ? "w-full" : "w-0"} h-full
                    bg-gray-100 -z-10 group-hover:w-full group-hover:transition-all`}
                 />

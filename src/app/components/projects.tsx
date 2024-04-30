@@ -21,7 +21,7 @@ const Projects = observer(() => {
               {p?.start_from} ~ {p?.end_to}
             </p>
             <div className="col-span-3">
-              <h1 className="font-bold">{p?.title}</h1>
+              <h1 className="font-bold text-xl">{p?.title}</h1>
               <span>{p?.introduction}</span>
               <Tags texts={p?.skills} />
 
