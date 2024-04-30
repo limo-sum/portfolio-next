@@ -19,9 +19,9 @@ const Works = observer(() => {
             key={p.at}
           >
             <div className="absolute -inset-x-4 -inset-y-4 z-0 cursor-default border border-transparent rounded hover:border-gray-300" />
-            <p className="col-span-1">
+            <div className="col-span-1">
               {periodGenerator(p?.start_from, p?.end_to)}
-            </p>
+            </div>
             <div className="col-span-3">
               <div className="flex items-end">
                 <h1 className="font-bold text-xl">{p?.at}</h1>

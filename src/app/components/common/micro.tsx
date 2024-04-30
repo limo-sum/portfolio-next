@@ -12,9 +12,9 @@ export const H1: FC<PropText> = ({ text }) => {
 };
 export const Tag: FC<PropText> = ({ text }) => {
   return (
-    <p className="px-3 xt-xs border border-gray-300 text-sm text-gray-600">
+    <span className="px-3 xt-xs border border-gray-300 text-sm text-gray-600">
       {text}
-    </p>
+    </span>
   );
 };
 
