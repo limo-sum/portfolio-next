@@ -25,9 +25,7 @@ const Intro = observer(() => {
 
   return (
     <div className="mb-4" id="INTRO">
-      {intro?.introduction?.map((sp: string) => {
-        return <li key={sp}>{sp}</li>;
-      })}
+      <li>{intro?.introduction}</li>
       <br />
       <Tags texts={intro?.skills} />
     </div>

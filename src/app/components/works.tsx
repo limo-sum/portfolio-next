@@ -29,10 +29,6 @@ const Works = observer(() => {
               {p?.descriptions?.map((d: string) => {
                 return (
                   <p key={d}>
-                    <FontAwesomeIcon
-                      icon={faCheck}
-                      color={theme.colors.background}
-                    />
                     <span>{d}</span>
                   </p>
                 );

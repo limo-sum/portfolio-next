@@ -44,7 +44,7 @@ const NavBar = observer(() => {
           <a href={"/"}>LEE JIYUN</a>
         </h1>
         <h2 className="mt-3 text-lg font-medium tracking-tight sm:text-xl">
-          FRONTEND DEVELOPER
+          WEB DEVELOPER
         </h2>
       </div>
       <nav className="lg:block">

@@ -46,12 +46,12 @@ const Home = observer(() => {
           </div>
         </div>
       )}
-      <div className="lg:flex lg:justify-between lg:gap-4">
+      <div className="lg:grid lg:gap-4 lg:grid-cols-3">
         <NavBar />
         <article className="col-span-2 py-24">
           <Intro />
-          <Works />
           <Projects />
+          <Works />
           <Educations />
         </article>
       </div>

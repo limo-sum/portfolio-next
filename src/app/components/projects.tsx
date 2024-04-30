@@ -1,7 +1,8 @@
-import { styled } from "styled-components";
 import { observer } from "mobx-react";
 import { H1, Tags } from "./common/micro";
 import useStore from "@/store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 
 const Projects = observer(() => {
   const { projects } = useStore().globalStore;
@@ -23,17 +24,28 @@ const Projects = observer(() => {
               <h1 className="font-bold">{p?.title}</h1>
               <span>{p?.introduction}</span>
               <Tags texts={p?.skills} />
-              {p?.contents?.map(
-                (c: { position: string; outputs: string[] }) => {
-                  return (
-                    <ProjectContent key={c.position}>
-                      {c.outputs.map((o: string) => {
-                        return <p key={o}>{o}</p>;
-                      })}
-                    </ProjectContent>
-                  );
-                }
-              )}
+
+              <ul className="flex flex-col gap-2">
+                {p?.contents?.map(
+                  (c: { position: string; outputs: string[] }) => {
+                    return (
+                      <li key={c.position}>
+                        <p className="border-b border-dashed py-1 mb-1">
+                          <FontAwesomeIcon icon={faFolderOpen} color="gray" />
+                          <span className="ml-1 text-gray-500">
+                            {c.position}
+                          </span>
+                        </p>
+                        <ul className="pl-2">
+                          {c.outputs.map((o: string) => {
+                            return <li key={o}>{o}</li>;
+                          })}
+                        </ul>
+                      </li>
+                    );
+                  }
+                )}
+              </ul>
             </div>
           </div>
         );
@@ -43,5 +55,3 @@ const Projects = observer(() => {
 });
 
 export default Projects;
-
-const ProjectContent = styled.div``;

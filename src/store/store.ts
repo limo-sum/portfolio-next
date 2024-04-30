@@ -3,8 +3,8 @@ import { observable, action } from "mobx";
 export const globalStore = observable({
   menus: [
     { title: "INTRO" },
-    { title: "WORKS" },
     { title: "PROJECTS" },
+    { title: "WORKS" },
     { title: "EDUCATIONS" },
   ],
   currentMenu: "INTRO",

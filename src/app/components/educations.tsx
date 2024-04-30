@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import theme from "@/styles/theme";
 import { observer } from "mobx-react";
 import { H1 } from "./common/micro";
 import useStore from "@/store";
@@ -23,24 +20,7 @@ const Educations = observer(() => {
             </p>
             <div className="col-span-3">
               <h1 className="font-bold">{p?.at}</h1>
-              <p>
-                <FontAwesomeIcon
-                  icon={faCircleUser}
-                  color={theme.colors.background}
-                />
-                <span>{p.title}</span>
-              </p>
-              {p?.skills?.map((s: string) => {
-                return (
-                  <p key={s}>
-                    <FontAwesomeIcon
-                      icon={faCheck}
-                      color={theme.colors.background}
-                    />
-                    <span>{s}</span>
-                  </p>
-                );
-              })}
+              <span>{p.title}</span>
             </div>
           </div>
         );
