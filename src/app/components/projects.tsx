@@ -1,79 +1,45 @@
-import { getProjects } from "@/fetch";
-import Frame from "./common/frame";
-import { ReactElement, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faLightbulb } from "@fortawesome/free-solid-svg-icons";
-import * as Styled from "./common/styled";
-import { theme } from "../../styles/theme";
 import { observer } from "mobx-react";
+import { H1, Tags } from "./common/micro";
 import useStore from "@/store";
-import SkeletonContents from "./common/skeleton";
 
 const Projects = observer(() => {
-  const { loading } = useStore().globalStore;
-  const [projects, setProjects] = useState<any[]>([]);
-  useEffect(() => {
-    onload();
-  }, []);
-  const onload = async () => {
-    const i = await getProjects();
-    setProjects(i);
-  };
+  const { projects } = useStore().globalStore;
 
-  const props: { title: string; content: ReactElement } = {
-    title: "PROJECTS",
-    content: (
-      <Styled.ContentFrame>
-        {loading ? (
-          <SkeletonContents />
-        ) : (
-          projects?.map((p: any) => {
-            return (
-              <Styled.ElementFrame key={p.title}>
-                <Styled.Period>
-                  {p?.start_from} ~ {p?.end_to}
-                </Styled.Period>
-                <Styled.TitleH1>{p?.title}</Styled.TitleH1>
-                <Styled.Tags>
-                  {p?.skills?.map((s: string) => {
-                    return <li key={s}>{s}</li>;
-                  })}
-                </Styled.Tags>
-                <Styled.ContentWithIcon>
-                  <FontAwesomeIcon
-                    icon={faLightbulb}
-                    color={theme.colors.background}
-                  />
-                  <Styled.ContentSpan>{p?.introduction}</Styled.ContentSpan>
-                </Styled.ContentWithIcon>
-                {p?.contents?.map(
-                  (c: { position: string; outputs: string[] }) => {
-                    return (
-                      <ProjectContent key={c.position}>
-                        {c.outputs.map((o: string) => {
-                          return (
-                            <Styled.ContentWithIcon key={o}>
-                              <FontAwesomeIcon
-                                icon={faCheck}
-                                color={theme.colors.background}
-                              />
-                              <Styled.ContentSpan>{o}</Styled.ContentSpan>
-                            </Styled.ContentWithIcon>
-                          );
-                        })}
-                      </ProjectContent>
-                    );
-                  }
-                )}
-              </Styled.ElementFrame>
-            );
-          })
-        )}
-      </Styled.ContentFrame>
-    ) as ReactElement,
-  };
-  return <Frame {...props} />;
+  return (
+    <div>
+      <H1 text="PROJECTS" />
+      {projects?.map((p: any) => {
+        return (
+          <div
+            className="relative mb-12 grid grid-cols-4 gap-4 pb-1"
+            key={p.title}
+          >
+            <div className="absolute -inset-x-4 -inset-y-4 z-0 cursor-default border border-transparent rounded hover:border-gray-300" />
+            <p className="col-span-1">
+              {p?.start_from} ~ {p?.end_to}
+            </p>
+            <div className="col-span-3">
+              <h1 className="font-bold">{p?.title}</h1>
+              <span>{p?.introduction}</span>
+              <Tags texts={p?.skills} />
+              {p?.contents?.map(
+                (c: { position: string; outputs: string[] }) => {
+                  return (
+                    <ProjectContent key={c.position}>
+                      {c.outputs.map((o: string) => {
+                        return <p key={o}>{o}</p>;
+                      })}
+                    </ProjectContent>
+                  );
+                }
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 });
 
 export default Projects;

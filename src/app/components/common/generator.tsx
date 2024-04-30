@@ -9,5 +9,13 @@ export const periodGenerator = (startFrom: string, endTo: string) => {
     diff >= 12
       ? `${Math.floor(diff / 12)}년 ${diff % 12}개월`
       : `${diff % 12}개월`;
-  return `${startFrom} ~ ${endTo} (${period})`;
+  return (
+    <p>
+      <span>
+        {startFrom} ~ {endTo}
+      </span>
+      <br />
+      <span className="text-gray-400">{period}</span>
+    </p>
+  );
 };
