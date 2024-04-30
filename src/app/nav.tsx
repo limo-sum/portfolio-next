@@ -52,6 +52,7 @@ const NavBar = observer(() => {
           {menus.map((menu: Menu) => {
             return (
               <li
+                key={menu.title}
                 className="mb-4 cursor-pointer relative group"
                 onClick={() => handleClick(menu.title)}
               >
