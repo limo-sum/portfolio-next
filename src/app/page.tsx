@@ -7,14 +7,13 @@ import Educations from "./components/educations";
 import NavBar from "./nav";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
-import { getEducations, getProjects, getWorks } from "@/fetch";
+import { getPortfolio } from "@/fetch";
 import useStore from "@/store";
 import Loading from "./components/common/loading";
 
 const Home = observer(() => {
   const { globalStore } = useStore();
-  const { loading, setLoading, setWorks, setProjects, setEducations } =
-    globalStore;
+  const { loading, setLoading, setPortfolio } = globalStore;
 
   useEffect(() => {
     onload();
@@ -25,12 +24,8 @@ const Home = observer(() => {
     window.onbeforeunload = function pushRefresh() {
       window.scrollTo(0, 0);
     };
-    const w = await getWorks();
-    setWorks(w);
-    const p = await getProjects();
-    setProjects(p);
-    const e = await getEducations();
-    setEducations(e);
+    const p = await getPortfolio();
+    setPortfolio(p);
 
     setLoading(false);
   };

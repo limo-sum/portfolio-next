@@ -1,31 +1,21 @@
-import { getIntro } from "@/fetch";
-import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Tags } from "./common/micro";
-
-interface IntroType {
-  email: string;
-  github: string;
-  introduction: string[];
-  name: string;
-  skills: string[];
-}
+import useStore from "@/store";
 
 const Intro = observer(() => {
-  const [intro, setIntro] = useState<IntroType | null>(null);
-
-  useEffect(() => {
-    onload();
-  }, []);
-
-  const onload = async () => {
-    const i = await getIntro();
-    setIntro(i);
-  };
+  const { intro } = useStore().globalStore;
 
   return (
     <div className="mb-4" id="INTRO">
-      <li>{intro?.introduction}</li>
+      <ul>
+        {intro?.introduction?.map((i: string) => {
+          return (
+            <li key={i} className="mb-1 h-auto">
+              {i}
+            </li>
+          );
+        })}
+      </ul>
       <br />
       <Tags texts={intro?.skills} />
     </div>

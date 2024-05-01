@@ -10,7 +10,12 @@ export const globalStore = observable({
   currentMenu: "INTRO",
   loading: true,
 
-  intro: {},
+  intro: {
+    name: "",
+    email: "",
+    introduction: [],
+    skills: [],
+  },
   works: [],
   projects: [],
   educations: [],
@@ -24,16 +29,10 @@ export const globalStore = observable({
   setLoading: action(async (m: boolean) => {
     globalStore.loading = m;
   }),
-  setIntro: action(async (m: any) => {
-    globalStore.intro = m;
-  }),
-  setWorks: action(async (m: never[]) => {
-    globalStore.works = m;
-  }),
-  setProjects: action(async (m: never[]) => {
-    globalStore.projects = m;
-  }),
-  setEducations: action(async (m: never[]) => {
-    globalStore.educations = m;
+  setPortfolio: action(async (m: any) => {
+    globalStore.intro = m.intro;
+    globalStore.works = m.works;
+    globalStore.projects = m.projects;
+    globalStore.educations = m.educations;
   }),
 });
