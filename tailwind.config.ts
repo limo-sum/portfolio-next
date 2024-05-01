@@ -8,10 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      animation: { flip: "flip 2s infinite" },
+      keyframes: {
+        flip: {
+          "0%, 80%": { transform: "rotateY(360deg)" },
+        },
       },
     },
   },
