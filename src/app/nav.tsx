@@ -43,25 +43,25 @@ const NavBar = observer(() => {
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
           <a href={"/portfolio-next"}>LEE JIYUN</a>
         </h1>
-        <h2 className="mt-3 text-lg font-medium tracking-tight sm:text-xl cursor-default">
+        <h2 className="mt-3 text-lg font-medium tracking-tight sm:text-xl">
           WEB DEVELOPER
         </h2>
       </div>
       <nav className="lg:block">
-        <ul className="mt-16 w-max">
+        <ul className="mt-16 w-full">
           {menus.map((menu: Menu) => {
             return (
               <li
                 key={menu.title}
-                className="mb-4 cursor-pointer relative group"
+                className="mb-4 flex items-center gap-3"
                 onClick={() => handleClick(menu.title)}
               >
-                <span
-                  className={`absolute -left-0 bottom-0 text-xl
-                  ${currentMenu === menu.title ? "w-full" : "w-0"} h-full
-                   bg-gray-100 -z-10 group-hover:w-full group-hover:transition-all`}
+                <span>{menu.title}</span>
+                <p
+                  className={`${
+                    currentMenu === menu.title && "bg-black"
+                  } w-full h-px`}
                 />
-                {menu.title}
               </li>
             );
           })}

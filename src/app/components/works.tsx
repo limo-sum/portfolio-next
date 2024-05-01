@@ -18,7 +18,7 @@ const Works = observer(() => {
             className="relative mb-12 grid grid-cols-4 gap-4 pb-1"
             key={p.at}
           >
-            <div className="absolute -inset-x-4 -inset-y-4 z-0 cursor-default border border-transparent rounded hover:border-gray-300" />
+            <div className="absolute -inset-x-4 -inset-y-4 z-0 border border-transparent rounded hover:border-gray-300" />
             <div className="col-span-1">
               {periodGenerator(p?.start_from, p?.end_to)}
             </div>

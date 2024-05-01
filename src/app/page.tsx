@@ -9,6 +9,7 @@ import { observer } from "mobx-react";
 import { useEffect } from "react";
 import { getEducations, getProjects, getWorks } from "@/fetch";
 import useStore from "@/store";
+import { AnimatedCursor } from "./components/common/cursor";
 
 const Home = observer(() => {
   const { globalStore } = useStore();
@@ -35,7 +36,7 @@ const Home = observer(() => {
   };
 
   return (
-    <div className="box-border mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 lg:px-24 lg:py-0 select-none">
+    <div className="box-border mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 lg:px-24 lg:py-0 select-none cursor-none">
       {loading && (
         <div className="fixed top-0 left-0 z-10 bg-white h-full w-full">
           <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
@@ -47,6 +48,7 @@ const Home = observer(() => {
         </div>
       )}
       <div className="lg:grid lg:gap-4 lg:grid-cols-3">
+        <AnimatedCursor />
         <NavBar />
         <article className="col-span-2 py-24">
           <Intro />
